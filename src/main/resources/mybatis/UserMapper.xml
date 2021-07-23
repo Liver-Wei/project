@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liwei.mapper.UserMapper">
+    <select id="queryUserList" resultType="com.liwei.entity.User">
+        select * from library.user
+    </select>
+
+    <select id="findByUserName" parameterType="String" resultType="com.liwei.entity.User">
+        SELECT * FROM library.user WHERE username = #{username}
+    </select>
+
+    <insert id="add">
+        insert into library.user (username,password,phone,card_number,admin)
+        values (#{username},#{password},#{phone},#{cardNumber},#{admin})
+    </insert>
+
+    <update id="edit">
+        update library.user
+        <set>
+            <choose>
+                <when test="field=='admin'">admin=#{value}</when>
+            </choose>
+            <choose>
+                <when test="field=='phone'">phone=#{value}</when>
+            </choose>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="delete">
+        delete from library.user where user_id = #{userId}
+    </delete>
+</mapper>

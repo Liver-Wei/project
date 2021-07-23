@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liwei.mapper.BorrowMapper">
+    <select id="listAll" resultType="com.liwei.entity.Borrow">
+        select *
+        from library.borrow
+    </select>
+
+    <insert id="add">
+        insert into library.borrow (borrow_date, return_date, back, borrow_user_id, borrow_book_id)
+        values (#{borrowDate}, #{returnDate}, #{back}, #{borrowUserId}, #{borrowBookId})
+    </insert>
+
+    <update id="edit">
+        update library.borrow
+        set borrow_date = #{borrowDate},
+            return_date     = #{returnDate},
+            back    = #{back},
+            borrow_user_id=  #{borrowUserId},
+            borrow_book_id = #{borrowBookId}
+        where borrow_user_id=  #{borrowUserId}
+    </update>
+
+    <delete id="delete">
+        delete
+        from library.borrow
+        where borrow_user_id=  #{borrowUserId}
+    </delete>
+</mapper>

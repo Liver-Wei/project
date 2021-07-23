@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liwei.mapper.FineMapper">
+    <select id="listAll" resultType="com.liwei.entity.Fine">
+        select *
+        from library.fine
+    </select>
+
+    <insert id="add">
+        insert into library.fine (money,fine_time,pay,fine_user_id)
+        values (#{money},#{fineTime},#{pay},#{fineUserId})
+    </insert>
+
+    <update id="edit">
+        update library.fine
+        set money = #{money},
+            fine_time    = #{fineTime},
+            fine_user_id=  #{fineUserId},
+            pay = #{pay}
+        where fine_user_id=  #{fineUserId}
+    </update>
+
+    <delete id="delete">
+        delete
+        from library.fine
+        where fine_user_id=  #{fineUserId}
+    </delete>
+</mapper>

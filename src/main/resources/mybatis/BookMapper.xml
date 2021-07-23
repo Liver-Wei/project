@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liwei.mapper.BookMapper">
+    <select id="listAll" resultType="com.liwei.entity.Book">
+        select *
+        from library.book
+    </select>
+
+    <insert id="add">
+        insert into library.book (book_name, press, number, exist_number, category, publish_date, author)
+        values (#{bookName}, #{press}, #{number}, #{existNumber}, #{category}, #{publishDate}, #{author})
+    </insert>
+
+    <update id="edit">
+        update library.book
+        set book_name = #{bookName},
+            press     = #{press},
+            number    = #{number},
+            exist_number = #{existNumber},
+            category = #{category},
+            publish_date = #{publishDate},
+            author = #{author}
+        where book.book_id = #{bookId}
+    </update>
+
+    <delete id="delete">
+        delete
+        from library.book
+        where book.book_id = #{bookId}
+    </delete>
+</mapper>
